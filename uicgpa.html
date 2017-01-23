@@ -1,0 +1,361 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="author" content="Yuchao" />
+    <meta name="application-name" content="GPA Calculator" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>UIC GPA Calculator</title>
+
+    <script src="jquery.min.js"></script>
+    <script type="text/javascript" src="Semantic-UI-CSS-master/components/dropdown.js"></script>
+    <script type="text/javascript" src="Semantic-UI-CSS-master/components/transition.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="Semantic-UI-CSS-master/semantic.css">
+    <link rel="stylesheet" type="text/css" href="Semantic-UI-CSS-master/components/dropdown.css">
+    <link rel="stylesheet" type="text/css" href="Semantic-UI-CSS-master/components/transition.css">
+    <link rel="stylesheet" type="text/css" href="Semantic-UI-CSS-master/semantic.js">    
+ 
+  <script>
+  $(document)
+    .ready(function() {
+      $('.ui.dropdown')
+        .dropdown({
+          on: 'click'
+        })
+      ;
+    })
+  ;
+  </script>
+
+  <style>
+  </style>
+
+  </head>
+  
+  <body>
+	  <center>
+	<br/><br/>
+	
+	<div style="width: 100%;">
+		<h3 id="title" style="color: #575757;">UIC GPA Calculator</h3>
+
+		<div style="width: 88%; color: #645e5e;">
+			<div id="uichcc" style="width: 50%; float: left; display: inline; ">
+			  <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzA4NDEzMjg3MA==&scene=110#wechat_redirect">
+				<img src="uichcclogo_blkalpha.png" width="52%"/>
+				<p>UIC 计算机俱乐部</p>
+			  </a>
+				<br/><br/><br/>
+			</div>
+	
+			<div id="uicer" style="width: 50%; float: right; display: inline; ">
+			  <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MjM5OTIxNjgwMA==&scene=124#wechat_redirect">
+				<img src="uicerlogo.jpeg" width="52%"/>
+				<p>UICer·UIC新媒体工作室</p>
+			  </a>
+				<br/><br/><br/>
+			</div>
+		</div>
+	
+		<br/>
+		<div style="width: 90%;">
+			<p id="ps">填完以下四项，会自动出现计算结果哦</p>
+		</div>
+	</div>
+	
+	<br/>
+	
+<!--
+	<div class="ui fluid search selection dropdown">
+	  <input type="hidden" name="country">
+	  <i class="dropdown icon"></i>
+	  <div class="default text">Select Country</div>
+	  <div class="menu">
+	    <div class="item" data-value="acct">ACCT</div>
+	    <div class="item" data-value="ae">AE</div>
+	    <div class="item" data-value="apsy">APSY</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	    <div class="item" data-value="ats">ATS</div>
+	  </div>
+	</div>
+-->
+
+	<div style="width: 94%;">
+	      <select class="ui fluid dropdown" id="currentSemester">
+	        <option value="0">当前学期（上下拖动）</option>
+	    <option value="1">大一上</option>
+	    <option value="2">大一下</option>
+	    <option value="3">大二上</option>
+	    <option value="4">大二下</option>
+	    <option value="5">大三上</option>
+	    <option value="6">大三下</option>
+	    <option value="7">大四上</option>
+	      </select>
+	
+		<div class="ui fluid input">
+		  <input type="number" id="currentGPA" placeholder="当前 GPA" />
+		</div>
+	
+	      <select class="ui fluid dropdown" id="goalSemester">
+	        <option value="0">目标学期（上下拖动）</option>
+	    <option value="2">大一下</option>
+	    <option value="3">大二上</option>
+	    <option value="4">大二下</option>
+	    <option value="5">大三上</option>
+	    <option value="6">大三下</option>
+	    <option value="7">大四上</option>
+	    <option value="8">大四下</option>
+	      </select>
+	
+		<div class="ui fluid input">
+		  <input type="number" id="goalGPA" placeholder="目标 GPA" />
+		</div>
+		
+	</div>
+	
+	<br/>
+	<div style="width: 80%;" id="adaptor">
+		<b><p id="result" style="font-size: larger;"></p></b>
+	</div>
+	
+	<div style="position: relative; left: 0; right: 0; bottom: 14px;">
+		<p>Fork us on <a href="https://github.com/uichcc/UIC_GPA_Calculator">Github</a>.</p>
+		<p>Copyright © 2017 UICHCC. All rights reserved.</p>
+	</div>
+
+	  </center>
+
+
+	<script type="text/javascript">
+		function resiz() {
+			if ($(window).width() < 360) {
+				$("body").empty();
+				document.write("请切换横屏并刷新或使用更大屏幕的设备。");
+			}
+		}
+		
+		resiz();
+		window.onresize = resiz;
+		
+		$("#adaptor").height($(window).height() - $("#adaptor").offset().top - 24);
+		if ($("#adaptor").height() < 84) {
+			$("#adaptor").height(84);
+		}
+		
+		var scoreDict = new Array();
+		scoreDict["12"] = 17;
+		scoreDict["13"] = 17 + 19;
+		scoreDict["14"] = 17 + 19 * 2;
+		scoreDict["15"] = 17 + 19 * 2 + 18;
+		scoreDict["16"] = 17 + 19 * 2 + 18 * 2;
+		scoreDict["17"] = 17 + 19 * 2 + 18 * 2 + 18;
+		scoreDict["18"] = 17 + 19 * 2 + 18 * 2 + 18 + 6;
+		scoreDict["23"] = 19;
+		scoreDict["24"] = 19 * 2;
+		scoreDict["25"] = 19 * 2 + 18;
+		scoreDict["26"] = 19 * 2 + 18 * 2;
+		scoreDict["27"] = 19 * 2 + 18 * 2 + 18;
+		scoreDict["28"] = 19 * 2 + 18 * 2 + 18 + 6;
+		scoreDict["34"] = 19;
+		scoreDict["35"] = 19 + 18;
+		scoreDict["36"] = 19 + 18 * 2;
+		scoreDict["37"] = 19 + 18 * 2 + 18;
+		scoreDict["38"] = 19 + 18 * 3 + 18 + 6;
+		scoreDict["45"] = 18;
+		scoreDict["46"] = 18 * 2;
+		scoreDict["47"] = 18 * 2 + 18;
+		scoreDict["48"] = 18 * 2 + 18 + 6;
+		scoreDict["56"] = 18;
+		scoreDict["57"] = 18 + 18;
+		scoreDict["58"] = 18 + 18 + 6;
+		scoreDict["67"] = 18;
+		scoreDict["68"] = 18 + 6;
+		scoreDict["78"] = 6;
+		
+		var currentSemVal = 0;
+		var goalSemVal = 0;
+				
+		var currentSemester = document.getElementById("currentSemester");
+		var currentGPA = document.getElementById("currentGPA");
+		var goalSemester = document.getElementById("goalSemester");
+		var goalGPA = document.getElementById("goalGPA");
+		
+
+		currentGPA.onkeyup = function() {
+			validationGPA(this);
+		};	  
+		goalGPA.onkeyup = function() {
+			validationGPA(this);
+		};
+		
+		currentGPA.onkeypress = function() {
+			if (event.keyCode != 46 && (event.keyCode < 48 || event.keyCode > 57)) {
+				event.returnValue = false;
+			}
+		}
+		goalGPA.onkeypress = function() {
+			if (event.keyCode != 46 && (event.keyCode < 48 || event.keyCode > 57)) {
+				event.returnValue = false;
+			}
+		}
+
+		$("#currentSemester").change(function() {
+		  currentSemVal = $("#currentSemester").val();
+		  goalSemVal = $("#goalSemester").val();
+		  
+		  $("#goalSemester").empty();
+		  var goalIndex = parseInt(currentSemester.value) + 1;
+		  var opt0 = $("<option>").val(0).text("目标学期");
+		  $("#goalSemester").append(opt0);
+		  for (var i = goalIndex; i <= 8; i++) {
+			  switch (i) {
+				  case 2: 
+				  var opt = $("<option>").val(i).text("大一下");
+				  $("#goalSemester").append(opt);
+				  break;
+				  case 3:
+				  var opt = $("<option>").val(i).text("大二上");
+				  $("#goalSemester").append(opt);
+				  break;
+				  case 4:
+				  var opt = $("<option>").val(i).text("大二下");
+				  $("#goalSemester").append(opt);
+				  break;
+				  case 5:
+				  var opt = $("<option>").val(i).text("大三上");
+				  $("#goalSemester").append(opt);
+				  break;
+				  case 6:
+				  var opt = $("<option>").val(i).text("大三下");
+				  $("#goalSemester").append(opt);
+				  break;
+				  case 7:
+				  var opt = $("<option>").val(i).text("大四上");
+				  $("#goalSemester").append(opt);
+				  break;
+				  case 8:
+				  var opt = $("<option>").val(i).text("大四下");	
+				  $("#goalSemester").append(opt);
+				  break;
+				  default: 
+				  break;
+			  }
+		  }
+		  
+		  $("#goalSemester").val(goalSemVal);
+		  if ($("#goalSemester").val() == null) {
+			$("#goalSemester").val(0);
+			$("#goalSemester").attr("value", '0');
+		  }
+		  
+		  calc();
+		});
+		
+		$("#goalSemester").change(calc);
+		
+		var lastCurrGPA = 4;
+		function validationGPA(obj) {
+		  if (obj.value > 4) {
+			  obj.value = lastCurrGPA;
+		  } else {
+			  if (obj.value.length > 4) {
+				  obj.value = lastCurrGPA;
+			  } else {
+				  lastCurrGPA = parseFloat(obj.value);
+			  }
+		  }
+		  calc();
+		}
+		
+		function calc() {
+		  var goalSem = goalSemester.value;
+		  var currSem = currentSemester.value;
+		  var goalGpa = goalGPA.value;
+		  var currGpa = currentGPA.value;
+		  if (currSem > 0 && goalSem > 0 && goalGpa.length > 0 && currGpa.length > 0) {
+			var totalGPA = 0;
+			if (currSem == 1) {
+				totalGPA = 17 * currGpa;
+			} else if (currSem == 2) {
+				totalGPA = 34 * currGpa;
+			} else if (currSem == 3) {
+				totalGPA = (34 + 19) * currGpa;
+			} else if (currSem == 4) {
+				totalGPA = (34 + 38) * currGpa;
+			} else if (currSem == 5) {
+				totalGPA = (34 + 38 + 18) * currGpa;
+			} else if (currSem == 6) {
+				totalGPA = (34 + 38 + 36) * currGpa;
+			} else if (currSem == 7) {
+				totalGPA = (34 + 38 + 36 + 18) * currGpa;
+			}
+			
+			var totalGoal = 0;
+			if (goalSem == 2) {
+				totalGoal = 34 * goalGpa;
+			} else if (goalSem == 3) {
+				totalGoal = (34 + 19) * goalGpa;
+			} else if (goalSem == 4) {
+				totalGoal = (34 + 38) * goalGpa;
+			} else if (goalSem == 5) {
+				totalGoal = (34 + 38 + 18) * goalGpa;
+			} else if (goalSem == 6) {
+				totalGoal = (34 + 38 + 36) * goalGpa;
+			} else if (goalSem == 7) {
+				totalGoal = (34 + 38 + 36 + 18) * goalGpa;
+			} else if (goalSem == 8) {
+				totalGoal = (34 + 38 + 36 + 18 + 6) * goalGpa;
+			}
+			
+			var deltaGpa = totalGoal - totalGPA;
+			if (deltaGpa < 0) {
+				$("#result").text("不要这么消极嘛，想开点..");
+			} else {
+				var semKey = currSem + "" + goalSem;
+				var deltaScore = scoreDict[semKey];
+				var averageGpa = (deltaGpa / deltaScore).toFixed(2);
+				
+				if (averageGpa > 4) {
+					$("#result").text("同学，不是开玩笑，咱们还是放弃吧..");
+				} else {
+					if (goalSem - currSem == 1) {
+						$("#result").text("想要在下学期达成目标，最少需要拿到" + averageGpa + "的 GPA 哦~");
+					} else {
+						$("#result").text("想要达成目标，接下来每个学期的平均 GPA 要在" + averageGpa + "或以上喔~");
+					}
+				}
+			}			
+		  } else {
+			  $("#result").text("");
+		  }
+		  
+		}
+		
+		
+	  
+	</script>
+
+  </body>
+  
+</html>
