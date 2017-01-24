@@ -182,7 +182,7 @@
 		scoreDict["35"] = 19 + 18;
 		scoreDict["36"] = 19 + 18 * 2;
 		scoreDict["37"] = 19 + 18 * 2 + 18;
-		scoreDict["38"] = 19 + 18 * 3 + 18 + 6;
+		scoreDict["38"] = 19 + 18 * 2 + 18 + 6;
 		scoreDict["45"] = 18;
 		scoreDict["46"] = 18 * 2;
 		scoreDict["47"] = 18 * 2 + 18;
@@ -330,6 +330,7 @@
 			}
 			
 			var deltaGpa = totalGoal - totalGPA;
+
 			if (deltaGpa < 0) {
 				$("#result").text("不要这么消极嘛，想开点..");
 			} else {
