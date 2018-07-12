@@ -11,147 +11,21 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 
-<body>
+<body onload="fill_in_info()">
 
 <div class="container">
     <h1 class="my-3">我的小目标</h1>
     <p class="text-muted">UIC GPA Calculator 2.0</p>
-    <form action="result/index.html" method="get">
-        <div class="row">
-            <div class="col-md">
-                <div class="form-group">
-                    <label for="currentSemesterSelect1">Current Semester</label>
-                    <select class="form-control" id="currentSemesterSelect1" name="current_sem" required>
-                        <option value="" disabled selected hidden>Please Choose...</option>
-                        <option value="1">大一上学期</option>
-                        <option value="2">大一下学期</option>
-                        <option value="3">大二上学期</option>
-                        <option value="4">大二下学期</option>
-                        <option value="5">大三上学期</option>
-                        <option value="6">大三下学期</option>
-                        <option value="7">大四上学期</option>
-                        <option value="8" disabled>大四下学期</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-group">
-                    <label for="currentSemesterGPAInput">Current cGPA</label>
-                    <input type="number" max="4.0" min="0.0" step="0.01"
-                           class="form-control" id="currentSemesterGPAInput"
-                           placeholder="e.g.: 2.93" name="current_gpa" required>
-                </div>
-            </div>
+    <div class="card">
+        <div class="card-body" id="aim-card">
+            <h5 class="card-title">你的目标是：<span id="aim-title"></span></h5>
+            <h6 class="card-subtitle mb-2 text-muted">你现在的 cGPA是：<span id="current-title"></span></h6>
+            <p class="card-text">想要达成目标，接下来每个学期的 sGPA 要在 <span id="keep-gpa"></span> 或以上喔~<span id="alert-words"></span></p>
+            <a href=".." class="card-link">再立一个目标</a>
         </div>
-        <div class="row">
-            <div class="col-md">
-                <div class="form-group">
-                    <label for="aimSemesterSelect1">Aim Semester</label>
-                    <select class="form-control" id="aimSemesterSelect1" name="aim_sem" required>
-                        <option value="" disabled selected hidden>Please Choose...</option>
-                        <option value="1">大一上学期</option>
-                        <option value="2">大一下学期</option>
-                        <option value="3">大二上学期</option>
-                        <option value="4">大二下学期</option>
-                        <option value="5">大三上学期</option>
-                        <option value="6">大三下学期</option>
-                        <option value="7">大四上学期</option>
-                        <option value="8">大四下学期</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-group">
-                    <label for="aimSemesterGPAInput">Aim cGPA</label>
-                    <input type="number" max="4.0" min="0.0" step="0.01"
-                           class="form-control" id="aimSemesterGPAInput"
-                           placeholder="e.g.: 3.45" name="aim_gpa" required>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md">
-                <div class="form-group">
-                    <label for="admissionYearSelector">Admission Year</label>
-                    <select class="form-control" id="admissionYearSelector" name="admission_year" required>
-                        <option value="" disabled selected hidden>Please Choose...</option>
-                        <option value="2018" disabled>2018 (Unavailable)</option>
-                        <option value="2017">2017</option>
-                        <option value="2016">2016</option>
-                        <option value="2015">2015</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-group">
-                    <label for="majorSelector">Major</label>
-                    <select class="form-control" id="majorSelector" name="major" required>
-                        <option value="" disabled selected hidden>Please Choose...</option>
-                        <optgroup label="Division of Business and Management">
-                            <option value="ACCT">Accounting</option>
-                            <option value="FIN">Finance</option>
-                            <option value="AE">Applied Economics</option>
-                            <option value="MHR">Management of Human Resources</option>
-                            <option value="MKT">Marketing Management</option>
-                            <option value="EBIS">Business Management and Information Systems</option>
-                            <option value="EPIN">Entrepreneurship and Innovation</option>
-                        </optgroup>
-                        <optgroup label="Division of Culture and Creativity">
-                            <option value="MAD">Media Arts and Design</option>
-                            <option value="CTV">Cinema and Television</option>
-                            <option value="CCM">Culture, Creativity and Management*</option>
-                        </optgroup>
-                        <optgroup label="Division of Humanities and Social Sciences">
-                            <option value="ATS">Applied Translation Studies</option>
-                            <option value="CELL">Contemporary English Language and Literature</option>
-                            <option value="ELLS">English Language and Literature Studies </option>
-                            <option value="GIR">Government and International Relations</option>
-                            <option value="IJ">International Journalism</option>
-                            <option value="PRA">Public Relations and Advertising</option>
-                            <option value="SWSA">Social Work and Social Administration</option>
-                            <option value="TESL">Teaching English as a Second Language</option>
-                        </optgroup>
-                        <optgroup label="Division of Science and Technology">
-                            <option value="APSY">Applied Psychology</option>
-                            <option value="CST">Computer Science and Technology</option>
-                            <option value="DS">Data Science</option>
-                            <option value="ENVS">Environmental Science</option>
-                            <option value="FM">Financial Mathematics</option>
-                            <option value="FST">Food Science and Technology</option>
-                            <option value="STAT">Statistics</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <a id="advanced_mode_btn" href="#" class="btn btn-secondary btn-sm mb-2">Advanced Mode</a>
-            </div>
-        </div>
-        <div class="row" id="advanced" style="display: none;">
-            <div class="col-md">
-                <div class="form-group">
-                    <label for="addedUnits">Any add-on or transfer units?</label>
-                    <input type="number" min="0" step="1"
-                           class="form-control" id="addedUnits"
-                           name="added_units" placeholder="0">
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-group">
-                    <label for="droppedUnits">Any dropped course? (please input the total units)</label>
-                    <input type="number" min="0" step="1"
-                           class="form-control" id="droppedUnits"
-                           name="dropped_units" placeholder="0">
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    </div>
 </div>
 
 
@@ -162,43 +36,173 @@
 <script src="https://cdn.bootcss.com/popper.js/1.10.0/umd/popper.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script>
-    $('#advanced_mode_btn').click(function () {
-        $('#advanced').fadeIn();
-        $(this).removeClass('btn-secondary');
-        $(this).addClass('btn-outline-secondary');
-    });
-
     var major_units = $.parseJSON("{\"ACCT\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"FIN\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"AE\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"MHR\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"MKT\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"EBIS\":{\"2015\":null,\"2016\":null,\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6}},\"EPIN\":{\"2015\":null,\"2016\":null,\"2017\":null,\"2018\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6}},\"CTV\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"CCM\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":20,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":15,\"8\":6},\"2017\":{\"1\":17,\"2\":20,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":15,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"MAD\":{\"2015\":null,\"2016\":{\"1\":17,\"2\":20,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":15,\"8\":6},\"2017\":{\"1\":17,\"2\":20,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":15,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"ATS\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"CELL\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":null,\"2017\":null,\"2018\":null},\"ELLS\":{\"2015\":null,\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"GIR\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"IJ\":{\"2015\":{\"1\":17,\"2\":17,\"3\":18,\"4\":20,\"5\":19,\"6\":16,\"7\":17,\"8\":8},\"2016\":{\"1\":17,\"2\":17,\"3\":18,\"4\":20,\"5\":19,\"6\":16,\"7\":17,\"8\":8},\"2017\":{\"1\":17,\"2\":17,\"3\":18,\"4\":20,\"5\":19,\"6\":16,\"7\":17,\"8\":8},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"PRA\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"SWSA\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":15,\"8\":9},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":15,\"8\":9},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":21,\"7\":15,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"TESL\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":null,\"2017\":null,\"2018\":null},\"APSY\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"CST\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":20,\"5\":19,\"6\":19,\"7\":15,\"8\":6},\"2016\":{\"1\":17,\"2\":18,\"3\":19,\"4\":20,\"5\":18,\"6\":19,\"7\":15,\"8\":6},\"2017\":{\"1\":17,\"2\":18,\"3\":19,\"4\":20,\"5\":18,\"6\":19,\"7\":15,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"DS\":{\"2015\":null,\"2016\":null,\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":20,\"5\":19,\"6\":19,\"7\":15,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"ENVS\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"FM\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":20,\"2\":20,\"3\":19,\"4\":16,\"5\":18,\"6\":18,\"7\":15,\"8\":6},\"2017\":{\"1\":20,\"2\":20,\"3\":19,\"4\":16,\"5\":18,\"6\":18,\"7\":15,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"FST\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":15,\"8\":9},\"2016\":{\"1\":17,\"2\":20,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":15,\"8\":6},\"2017\":{\"1\":17,\"2\":20,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":15,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}},\"STAT\":{\"2015\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2016\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2017\":{\"1\":17,\"2\":17,\"3\":19,\"4\":19,\"5\":18,\"6\":18,\"7\":18,\"8\":6},\"2018\":{\"1\":null,\"2\":null,\"3\":null,\"4\":null,\"5\":null,\"6\":null,\"7\":null,\"8\":null}}}")
-    // disable selections in "aim semester selector"
-    $("#currentSemesterSelect1").change(function () {
-        let startNumber = $(this).val();
-        $('#aimSemesterSelect1 option').each(function () {
-            $(this).attr("disabled", false) // reset all
-        });
 
-        $('#aimSemesterSelect1 option').each(function () {
-            if($(this).val() <= startNumber){
-                $(this).attr("disabled", true)
-            }
-        });
-    });
+    function getSearchParameters() {
+        let prmstr = window.location.search.substr(1);
+        return prmstr != null && prmstr !== "" ? transformToAssocArray(prmstr) : {};
+    }
 
-    $("#currentSemesterGPAInput").change(function () {
-        if($(this).val() >= 0.0 && $(this).val() <= 4.0){
-            return true;
-        }else{
-            $(this).val("");
+    function transformToAssocArray( prmstr ) {
+        var params = {};
+        var prmarr = prmstr.split("&");
+        for ( var i = 0; i < prmarr.length; i++) {
+            var tmparr = prmarr[i].split("=");
+            params[tmparr[0]] = tmparr[1];
         }
-    });
+        return params;
+    }
 
+    var params = getSearchParameters();
 
-    $("#aimSemesterGPAInput").change(function () {
-        if($(this).val() >= 0.0 && $(this).val() <= 4.0){
-            return true;
-        }else{
-            $(this).val("");
+    function fill_in_info() {
+        var calculation_result = cal_gpa().toFixed(2);
+        $("#keep-gpa").text(calculation_result);
+        if(calculation_result > 4.0){
+            $("#alert-words").text("（想想都知道不可能啦）");
+        }else if(calculation_result < 1.67){
+            $("#alert-words").text("（你真这么玩，就是在退学边缘试探）");
         }
-    });
+    }
+    function cal_gpa(){
+        let current_sem = params["current_sem"];
+        let aim_sem = params["aim_sem"];
+        let current_gpa = params["current_gpa"];
+        let aim_gpa = params["aim_gpa"];
+        let added_units = params["added_units"];
+        let dropped_units = params["dropped_units"];
+        let major = params["major"];
+        let admission_year = params["admission_year"];
+
+        let current_units = sum_up_units(current_sem, major, admission_year);
+        let aim_units = sum_up_units(aim_sem, major, admission_year);
+
+        $("#aim-title").text("在" + get_semester_name(aim_sem) +" cGPA 达到：" + aim_gpa);
+        $("#current-title").text(current_gpa);
+        return -(aim_gpa * aim_units - current_gpa * current_units) / (current_units - aim_units);
+    }
+
+    function get_semester_name(sem) {
+        switch (sem){
+            case "1":
+                return "大一上学期";
+            case "2":
+                return "大一下学期";
+            case "3":
+                return "大二上学期";
+            case "4":
+                return "大二下学期";
+            case "5":
+                return "大三上学期";
+            case "6":
+                return "大三下学期";
+            case "7":
+                return "大四上学期";
+            case "8":
+                return "大四下学期";
+        }
+    }
+
+    function sum_up_units(semester, major, admission){
+        var units_set;
+        switch (major) {
+            case "ACCT":
+                units_set = major_units.ACCT[admission];
+                break;
+            case "FIN":
+                units_set = major_units.FIN[admission];
+                break;
+            case "AE":
+                units_set = major_units.AE[admission];
+                break;
+            case "MHR":
+                units_set = major_units.MHR[admission];
+                break;
+            case "MKT":
+                units_set = major_units.MKT[admission];
+                break;
+            case "EBIS":
+                units_set = major_units.EBIS[admission];
+                break;
+            case "EPIN":
+                units_set = major_units.EPIN[admission];
+                break;
+            case "MAD":
+                units_set = major_units.MAD[admission];
+                break;
+            case "CTV":
+                units_set = major_units.CTV[admission];
+                break;
+            case "CCM":
+                units_set = major_units.CCM[admission];
+                break;
+            case "ATS":
+                units_set = major_units.ATS[admission];
+                break;
+            case "CELL":
+                units_set = major_units.CELL[admission];
+                break;
+            case "ELLS":
+                units_set = major_units.ELLS[admission];
+                break;
+            case "GIR":
+                units_set = major_units.GIR[admission];
+                break;
+            case "IJ":
+                units_set = major_units.IJ[admission];
+                break;
+            case "PRA":
+                units_set = major_units.PRA[admission];
+                break;
+            case "SWSA":
+                units_set = major_units.SWSA[admission];
+                break;
+            case "TESL":
+                units_set = major_units.TESL[admission];
+                break;
+            case "APSY":
+                units_set = major_units.APSY[admission];
+                break;
+            case "CST":
+                units_set = major_units.CST[admission];
+                break;
+            case "DS":
+                units_set = major_units.DS[admission];
+                break;
+            case "ENVS":
+                units_set = major_units.ENVS[admission];
+                break;
+            case "FM":
+                units_set = major_units.FM[admission];
+                break;
+            case "FST":
+                units_set = major_units.FST[admission];
+                break;
+            case "STAT":
+                units_set = major_units.STAT[admission];
+                break;
+        }
+        var units = 0;
+        switch (semester){
+            case "8":
+                units += units_set[8];
+            case "7":
+                units += units_set[7];
+            case "6":
+                units += units_set[6];
+            case "5":
+                units += units_set[5];
+            case "4":
+                units += units_set[4];
+            case "3":
+                units += units_set[3];
+            case "2":
+                units += units_set[2];
+            case "1":
+                units += units_set[1];
+        }
+        return units;
+    }
 </script>
 </body>
 </html>
