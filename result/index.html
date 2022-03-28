@@ -74,6 +74,10 @@
         let major = params["major"];
         let admission_year = params["admission_year"];
 
+        if (admission_year === "default") {
+            admission_year = "2016";
+        }
+
         let current_units = sum_up_units(current_sem, major, admission_year);
         let aim_units = sum_up_units(aim_sem, major, admission_year);
 
@@ -180,6 +184,9 @@
                 break;
             case "STAT":
                 units_set = major_units.STAT[admission];
+                break;
+            case "DEFAULT":
+                units_set = {1: 17, 2: 18, 3: 19, 4: 20, 5: 18, 6: 19, 7: 15, 8: 6}
                 break;
         }
         var units = 0;
